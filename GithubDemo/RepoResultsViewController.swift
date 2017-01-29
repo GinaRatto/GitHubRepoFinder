@@ -45,9 +45,6 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        //print("table view set up called")
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell", for: indexPath) as! RepoCell
         let repo = repos[indexPath.row]
         cell.repo = repo
@@ -71,13 +68,7 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         
         // Perform request to GitHub API to get the list of repositories
         GithubRepo.fetchRepos(searchSettings, successCallback: { (newRepos) -> Void in
-            
-            // Print the returned repositories to the output window
-            for repo in newRepos {
-                //print(repo)
-            }
             self.repos = newRepos
-            //print("self.repo did set")
             self.tableView.reloadData()
             
             MBProgressHUD.hide(for: self.view, animated: true)

@@ -21,7 +21,6 @@ class RepoCell: UITableViewCell {
   
     var repo: GithubRepo! {
         didSet {
-            print("in didset")
             if let name = repo.name {
                 nameLabel.text = name
             }
