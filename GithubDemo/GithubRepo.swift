@@ -15,7 +15,7 @@ private let clientSecret: String? = nil
 
 // Model class that represents a GitHub repository
 class GithubRepo: CustomStringConvertible {
-
+    
     var name: String?
     var ownerHandle: String?
     var ownerAvatarURL: String?
@@ -45,6 +45,7 @@ class GithubRepo: CustomStringConvertible {
                 self.ownerAvatarURL = ownerAvatarURL
             }
         }
+        
         if let description = jsonResult["description"] as? String {
             self.repoDescription = description
         }
@@ -55,7 +56,7 @@ class GithubRepo: CustomStringConvertible {
     class func fetchRepos(_ settings: GithubRepoSearchSettings, successCallback: @escaping ([GithubRepo]) -> (), error: ((Error?) -> ())?) {
         let manager = AFHTTPRequestOperationManager()
         let params = queryParamsWithSettings(settings)
-
+        
         manager.get(reposUrl, parameters: params, success: { (operation: AFHTTPRequestOperation, responseObject: Any) in
             if let response = responseObject as? NSDictionary, let results = response["items"] as? NSArray {
                 var repos: [GithubRepo] = []
@@ -95,13 +96,22 @@ class GithubRepo: CustomStringConvertible {
         
         return params
     }
-
+    
     // Creates a text representation of a GitHub repo
     var description: String {
-        return "[Name: \(self.name!)]" +
-            "\n\t[Stars: \(self.stars!)]" +
-            "\n\t[Forks: \(self.forks!)]" +
-            "\n\t[Owner: \(self.ownerHandle!)]" +
+        if repoDescription != nil {
+            return "[Name: \(self.name!)]" +
+                "\n\t[Stars: \(self.stars!)]" +
+                "\n\t[Forks: \(self.forks!)]" +
+                "\n\t[Owner: \(self.ownerHandle!)]" +
+                "\n\t[Avatar: \(self.ownerAvatarURL!)]" +
+            "\n\t[Description: \(self.repoDescription!)]"
+        } else {
+            return "[Name: \(self.name!)]" +
+                "\n\t[Stars: \(self.stars!)]" +
+                "\n\t[Forks: \(self.forks!)]" +
+                "\n\t[Owner: \(self.ownerHandle!)]" +
             "\n\t[Avatar: \(self.ownerAvatarURL!)]"
+        }
     }
 }

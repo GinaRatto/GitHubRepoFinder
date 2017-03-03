@@ -132,7 +132,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="x5q-EH-pP8"/>
+                    <navigationItem key="navigationItem" id="x5q-EH-pP8">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="vbP-8t-ybe">
+                            <connections>
+                                <segue destination="Jzl-uU-bIq" kind="presentation" id="be0-HV-0m8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Hd7-yv-D3I" id="hni-cQ-x61"/>
                     </connections>
@@ -140,6 +146,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="818.39999999999998" y="-558.17091454272872"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="qTE-kD-vfh">
+            <objects>
+                <viewController id="57W-RX-177" customClass="SearchSettingsViewController" customModule="GithubDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u7l-yZ-1xo"/>
+                        <viewControllerLayoutGuide type="bottom" id="kyX-JS-YkT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cHh-9l-JTB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="rCI-Va-WPr">
+                                <rect key="frame" x="151" y="109" width="118" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderValChanged:" destination="57W-RX-177" eventType="valueChanged" id="IcI-1F-aTt"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum Stars:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBI-mN-eju">
+                                <rect key="frame" x="26" y="114" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cx7-wJ-dAb">
+                                <rect key="frame" x="26" y="143" width="291" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QBI-mN-eju" firstAttribute="leading" secondItem="cHh-9l-JTB" secondAttribute="leadingMargin" constant="10" id="0R1-G0-sM3"/>
+                            <constraint firstItem="QBI-mN-eju" firstAttribute="top" secondItem="u7l-yZ-1xo" secondAttribute="bottom" constant="50" id="gRd-wN-OUO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="4Ve-W5-yDc">
+                        <barButtonItem key="leftBarButtonItem" title="Save" id="07b-J2-rfY">
+                            <connections>
+                                <action selector="saveClicked:" destination="57W-RX-177" id="aPM-x0-rGO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="8XI-uB-sMx">
+                            <connections>
+                                <action selector="cancelClicked:" destination="57W-RX-177" id="rEX-Hp-Kt0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="slider" destination="rCI-Va-WPr" id="JYV-p5-Y6d"/>
+                        <outlet property="sliderVal" destination="Cx7-wJ-dAb" id="gaU-tf-NaN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="emi-Xl-rjF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2528.8000000000002" y="-558.17091454272872"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FpP-oR-azb">
@@ -158,6 +224,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dru-y2-L7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="-557"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DOE-aT-aVh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jzl-uU-bIq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NZj-qr-eLk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="57W-RX-177" kind="relationship" relationship="rootViewController" id="h08-Kg-fmK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ArK-2d-tZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1589.5999999999999" y="-558.17091454272872"/>
         </scene>
     </scenes>
 </document>
